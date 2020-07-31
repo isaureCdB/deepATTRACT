@@ -1,6 +1,4 @@
-#######################################################
 # Purpose of deepATTRACT
-#######################################################
 
 ATTRACT [1] is a protein - protein/RNA/DNA docking software.
 It uses a coarse-grained representation and a knowledge-based soft Lennard-Jones potential.
@@ -15,9 +13,9 @@ deepATTRACT [3] was created to tackle the problem of ssRNA docking into
 deep cavities of the protein, where 3-nt could not enter from their external
 initial position by simple gradient-based minimisation.
 
-#######################################################
+
 # Strategy of deepATTRACT
-#######################################################
+
 deepATTRACT uses dense grid points as starting positions for the ligand,
 and applies hierarchical filters to retain a reasonnable number of
 suitable starting positions for gradient descent minimisation in ATTRACT ff.
@@ -31,9 +29,9 @@ volume to accomodate a 3-nt. At each of those points are placed each of few
 Those points, associated with all their clash-free orientations and conformers,
 are used as starting 3-nt positions for the docking with ATTRACT.
 
-#######################################################
-# Usage of deepATTRACT
-#######################################################
+
+# Tactic of deepATTRACT
+
 
 ------------------------------------------
 Get starting positions inside pockets
@@ -55,18 +53,23 @@ Recommended n is in range [500-1000].
 ------------------------------------------
 Filter and Dock
 ------------------------------------------
-_ Score each conformer in clust3Ar.list at each position
-_ Get starting position + conformer having a score < 1000
-_ Distribute to each starting position the conformers from clust1Ar.list in the clust3Ar of the well-scored conformer
-_ Score in place
-_ Retain the e7 best-scored poses
+
+./deepATTRACT.sh
+
+_ Create starting positions by applying 128 rotations at each point 
+_ Cluster conformers at 3A, list their centers in clust3Ar.list
+_ Score each conformer of clust3Ar.list at each position
+_ Select poses (position + conformer) having a score < 1000
+_ Distribute to each starting position the conformers in the same clust3Ar as the well-scored conformer
+_ Score, retain the e7 best-scored poses
 _ minimize vmax=100
 _ keep top e6
 
 ------------------------------------------
-	Assemble
+Assemble
 ------------------------------------------
- 1.3A cutoff
+[redaction ongoing]
+Use 1.3A cutoff for overlapping fragments
 assemble 5 to 8 frag > ~ 1-2.e6 chains
 
 
